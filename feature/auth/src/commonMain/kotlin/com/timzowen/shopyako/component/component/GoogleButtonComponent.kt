@@ -34,6 +34,7 @@ import com.timzowen.shopyako.shared.GrayDarker
 import com.timzowen.shopyako.shared.IconSecondary
 import com.timzowen.shopyako.shared.Resources
 import com.timzowen.shopyako.shared.TextPrimary
+import com.timzowen.shopyako.shared.FontSize
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
