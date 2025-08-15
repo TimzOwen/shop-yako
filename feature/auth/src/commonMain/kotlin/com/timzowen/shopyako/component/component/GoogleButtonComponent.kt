@@ -92,7 +92,7 @@ fun GoogleButtonComponent(
             Text(
                 text = buttonText,
                 color = TextPrimary,
-                fontSize = FontSize.REGULAR
+                fontSize = 16.sp
             )
         }
     }
