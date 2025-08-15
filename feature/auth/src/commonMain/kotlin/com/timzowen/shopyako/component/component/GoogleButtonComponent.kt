@@ -74,7 +74,8 @@ fun GoogleButtonComponent(
             AnimatedVisibility(visible = !loading) {
                 Icon(
                     painter = painterResource(icon),
-                    contentDescription = "Google button"
+                    contentDescription = "Google button",
+                    tint = Color.Unspecified
                 )
             }
 

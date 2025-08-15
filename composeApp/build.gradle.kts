@@ -42,6 +42,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.lifecycleViewmodel)
             implementation(libs.lifecycleRuntimeCompose)
+
+            implementation(project(path = ":navigation"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

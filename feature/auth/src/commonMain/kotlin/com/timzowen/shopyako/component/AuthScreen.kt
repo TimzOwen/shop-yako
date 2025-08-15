@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.timzowen.shopyako.component.component.GoogleButtonComponent
 import com.timzowen.shopyako.shared.Alpha
 import com.timzowen.shopyako.shared.Surface
@@ -26,6 +27,7 @@ fun AuthScreen() {
 
     Scaffold { paddingValues ->
         ContentWithMessageBar(
+            contentBackgroundColor = Surface,
             modifier = Modifier
                 .padding(
                     top = paddingValues.calculateTopPadding(),
@@ -34,7 +36,10 @@ fun AuthScreen() {
             messageBarState = messageBarState,
             errorMaxLines = 2
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(24.dp)) {
                 Column(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally,

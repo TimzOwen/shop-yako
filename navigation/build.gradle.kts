@@ -42,6 +42,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.lifecycleViewmodel)
             implementation(libs.lifecycleRuntimeCompose)
+
+            implementation(project(path = ":feature:auth"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
