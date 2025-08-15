@@ -1,4 +1,4 @@
-package com.shopyako.shopyako.shared
+package com.timzowen.shopyako.shared
 
 import shopyako.shared.generated.resources.Res
 import shopyako.shared.generated.resources.back_arrow

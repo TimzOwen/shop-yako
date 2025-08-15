@@ -1,4 +1,4 @@
-package com.nutrisport.shared
+package com.timzowen.shopyako.shared
 
 import androidx.compose.ui.graphics.Color
 
