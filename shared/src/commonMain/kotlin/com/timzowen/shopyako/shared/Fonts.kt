@@ -1,12 +1,20 @@
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
+import shopyako.shared.generated.resources.Res
+import shopyako.shared.generated.resources.bebas_neue_regular
+import org.jetbrains.compose.resources.Font
+import shopyako.shared.generated.resources.roboto_condensed_medium
 
 @Composable
-fun BebasNeueuFont() = FontFamily(
-    Font(Res.font.bebas_neue_regular, FontWeight.Normal)
+fun BebasNeueFont() = FontFamily(
+    Font(Res.font.bebas_neue_regular)
 )
 
 @Composable
 fun RobotoCondensedFont() = FontFamily(
-    Font(Res.font.roboto_condensed_mdeium)
+    Font(Res.font.roboto_condensed_medium)
 )
 
 object FontSize{
