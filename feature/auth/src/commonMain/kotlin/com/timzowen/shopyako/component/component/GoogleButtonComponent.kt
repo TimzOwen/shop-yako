@@ -29,7 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.timzowen.shopyako.shared.FontSize
+import androidx.compose.ui.unit.sp
 import com.timzowen.shopyako.shared.IconSecondary
 import com.timzowen.shopyako.shared.Resources
 import com.timzowen.shopyako.shared.SurfaceDarker
