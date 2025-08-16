@@ -79,7 +79,7 @@ fun AuthScreen() {
                     linkAccount = false,
                     onResult = { result ->
                         result.onSuccess { user ->
-                            messageBarState.addError("Authentication successful")
+                            messageBarState.addSuccess("Authentication successful")
                             loadingState = false
                         }.onFailure { error ->
                             if (error.message?.contains("A network error") == true){

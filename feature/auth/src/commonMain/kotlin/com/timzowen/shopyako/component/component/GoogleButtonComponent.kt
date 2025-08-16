@@ -1,6 +1,6 @@
 package com.timzowen.shopyako.component.component
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.border
@@ -29,14 +29,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.timzowen.shopyako.shared.Gray
-import com.timzowen.shopyako.shared.GrayDarker
+import com.timzowen.shopyako.shared.FontSize
 import com.timzowen.shopyako.shared.IconSecondary
 import com.timzowen.shopyako.shared.Resources
-import com.timzowen.shopyako.shared.TextPrimary
-import com.timzowen.shopyako.shared.FontSize
 import com.timzowen.shopyako.shared.SurfaceDarker
 import com.timzowen.shopyako.shared.SurfaceLighter
+import com.timzowen.shopyako.shared.TextPrimary
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -74,20 +72,22 @@ fun GoogleButtonComponent(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            AnimatedVisibility(visible = !loading) {
-                Icon(
-                    painter = painterResource(icon),
-                    contentDescription = "Google button",
-                    tint = Color.Unspecified
-                )
-            }
-
-            AnimatedVisibility(visible = loading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(24.dp),
-                    strokeWidth = 2.dp,
-                    color = progressIndicatorColor
-                )
+            AnimatedContent(
+                targetState = loading
+            ) {
+                if (!loading) {
+                    Icon(
+                        painter = painterResource(icon),
+                        contentDescription = "Google button",
+                        tint = Color.Unspecified
+                    )
+                } else {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(24.dp),
+                        strokeWidth = 2.dp,
+                        color = progressIndicatorColor
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.width(12.dp))
