@@ -1,5 +1,6 @@
 package com.timzowen.shopyako.component
 
+import ContentWithMessageBar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,57 +9,99 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.mmk.kmpauth.firebase.google.GoogleButtonUiContainerFirebase
 import com.timzowen.shopyako.component.component.GoogleButtonComponent
 import com.timzowen.shopyako.shared.Alpha
 import com.timzowen.shopyako.shared.FontSize
 import com.timzowen.shopyako.shared.Surface
 import com.timzowen.shopyako.shared.TextPrimary
 import com.timzowen.shopyako.shared.TextSecondary
+import rememberMessageBarState
 
 @Composable
 fun AuthScreen() {
-    // Simplified Scaffold without MessageBar wrapper to avoid iOS link error for now
+
+    val messageBarState = rememberMessageBarState()
+    var loadingState by remember { mutableStateOf(false) }
+
     Scaffold(containerColor = Surface) { paddingValues ->
-        Column(
+        ContentWithMessageBar(
             modifier = Modifier
                 .padding(
-                    top = paddingValues.calculateTopPadding(),
+                    top = paddingValues.calculateBottomPadding(),
                     bottom = paddingValues.calculateBottomPadding()
-                )
-                .fillMaxSize()
-                .padding(24.dp)
+                ),
+            messageBarState = messageBarState,
+            errorMaxLines = 2
         ) {
             Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier
+                    .padding(
+                        top = paddingValues.calculateTopPadding(),
+                        bottom = paddingValues.calculateBottomPadding()
+                    )
+                    .fillMaxSize()
+                    .padding(24.dp)
             ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Shop Yako",
-                    textAlign = TextAlign.Center,
-                    fontSize = FontSize.EXTRA_LARGE,
-                    color = TextSecondary
-                )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .alpha(Alpha.HALF),
-                    text = "Sign in to continue",
-                    textAlign = TextAlign.Center,
-                    fontSize = FontSize.EXTRA_REGULAR,
-                    color = TextPrimary
-                )
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Shop Yako",
+                        textAlign = TextAlign.Center,
+                        fontSize = FontSize.EXTRA_LARGE,
+                        color = TextSecondary
+                    )
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .alpha(Alpha.HALF),
+                        text = "Sign in to continue",
+                        textAlign = TextAlign.Center,
+                        fontSize = FontSize.EXTRA_REGULAR,
+                        color = TextPrimary
+                    )
+                }
+
+                GoogleButtonUiContainerFirebase(
+                    linkAccount = false,
+                    onResult = { result ->
+                        result.onSuccess { user ->
+                            messageBarState.addError("Authentication successful")
+                            loadingState = false
+                        }.onFailure { error ->
+                            if (error.message?.contains("A network error") == true){
+                                messageBarState.addError("Please connect ot internet")
+                            }else if (error.message?.contains("Idtoken is null") == true){
+                                messageBarState.addError("Sign in cancelled")
+                            }else{
+                                messageBarState.addError("Unknown")
+                            }
+                            loadingState = false
+                        }
+                    }
+                ) {
+                    GoogleButtonComponent(
+                        loading = loadingState,
+                        onClick = {
+                            loadingState = true
+                            this@GoogleButtonUiContainerFirebase.onClick()
+                        }
+                    )
+                }
             }
-            GoogleButtonComponent(
-                loading = false,
-                onClick = {}
-            )
         }
     }
 }

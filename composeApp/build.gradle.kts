@@ -43,7 +43,9 @@ kotlin {
             implementation(libs.lifecycleViewmodel)
             implementation(libs.lifecycleRuntimeCompose)
 
+            implementation(libs.auth.kmp)
             implementation(project(path = ":navigation"))
+            implementation(project(path = ":shared"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

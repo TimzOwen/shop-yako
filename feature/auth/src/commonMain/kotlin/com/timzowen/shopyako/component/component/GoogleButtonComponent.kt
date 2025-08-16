@@ -35,6 +35,8 @@ import com.timzowen.shopyako.shared.IconSecondary
 import com.timzowen.shopyako.shared.Resources
 import com.timzowen.shopyako.shared.TextPrimary
 import com.timzowen.shopyako.shared.FontSize
+import com.timzowen.shopyako.shared.SurfaceDarker
+import com.timzowen.shopyako.shared.SurfaceLighter
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -46,8 +48,8 @@ fun GoogleButtonComponent(
     secondaryText: String = "Please wait..",
     icon: DrawableResource = Resources.Image.GoogleLogo,
     shape: Shape = RoundedCornerShape(size = 99.dp),
-    backgroundColor: Color = Gray,
-    borderColor: Color = GrayDarker,
+    backgroundColor: Color = SurfaceLighter,
+    borderColor: Color = SurfaceDarker,
     progressIndicatorColor: Color = IconSecondary,
     onClick: () -> Unit,
 ) {
