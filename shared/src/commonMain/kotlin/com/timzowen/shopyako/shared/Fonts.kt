@@ -1,10 +1,11 @@
+package com.timzowen.shopyako.shared
+
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.resources.Font
 import shopyako.shared.generated.resources.Res
 import shopyako.shared.generated.resources.bebas_neue_regular
-import org.jetbrains.compose.resources.Font
 import shopyako.shared.generated.resources.roboto_condensed_medium
 
 @Composable
@@ -17,7 +18,7 @@ fun RobotoCondensedFont() = FontFamily(
     Font(Res.font.roboto_condensed_medium)
 )
 
-object FontSize{
+object FontSize {
     val EXTRA_SMALL = 10.sp
     val SMALL = 12.sp
     val REGULAR = 14.sp
