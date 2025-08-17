@@ -1,9 +1,21 @@
 package com.timzowen.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHost
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.timzowen.shopyako.component.AuthScreen
 
 @Composable
-fun SetupNavGraph(){
-    AuthScreen()
+fun SetupNavGraph() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Auth
+    ) {
+        composable<Screen.Auth> {
+            AuthScreen()
+        }
+    }
 }
