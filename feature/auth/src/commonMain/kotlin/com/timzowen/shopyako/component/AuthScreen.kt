@@ -23,8 +23,11 @@ import com.timzowen.shopyako.component.component.GoogleButtonComponent
 import com.timzowen.shopyako.shared.Alpha
 import com.timzowen.shopyako.shared.FontSize
 import com.timzowen.shopyako.shared.Surface
+import com.timzowen.shopyako.shared.SurfaceBrand
+import com.timzowen.shopyako.shared.SurfaceError
 import com.timzowen.shopyako.shared.TextPrimary
 import com.timzowen.shopyako.shared.TextSecondary
+import com.timzowen.shopyako.shared.TextWhite
 import rememberMessageBarState
 
 @Composable
@@ -41,7 +44,11 @@ fun AuthScreen() {
                     bottom = paddingValues.calculateBottomPadding()
                 ),
             messageBarState = messageBarState,
-            errorMaxLines = 2
+            errorMaxLines = 2,
+            errorContainerColor = SurfaceError,
+            errorContentColor = TextWhite,
+            successContainerColor = SurfaceBrand,
+            successContentColor = TextPrimary,
         ) {
             Column(
                 modifier = Modifier
