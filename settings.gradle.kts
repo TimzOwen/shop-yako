@@ -14,6 +14,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+include(":data")
 
 dependencyResolutionManagement {
     repositories {
