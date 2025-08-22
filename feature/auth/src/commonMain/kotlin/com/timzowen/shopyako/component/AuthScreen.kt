@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.mmk.kmpauth.firebase.google.GoogleButtonUiContainerFirebase
+import com.timzowen.shopyako.component.component.AuthViewModel
 import com.timzowen.shopyako.component.component.GoogleButtonComponent
 import com.timzowen.shopyako.shared.Alpha
 import com.timzowen.shopyako.shared.FontSize
@@ -28,11 +29,12 @@ import com.timzowen.shopyako.shared.SurfaceError
 import com.timzowen.shopyako.shared.TextPrimary
 import com.timzowen.shopyako.shared.TextSecondary
 import com.timzowen.shopyako.shared.TextWhite
+import org.koin.compose.viewmodel.koinViewModel
 import rememberMessageBarState
 
 @Composable
 fun AuthScreen() {
-
+    val viewModel = koinViewModel<AuthViewModel>()
     val messageBarState = rememberMessageBarState()
     var loadingState by remember { mutableStateOf(false) }
 
@@ -86,7 +88,11 @@ fun AuthScreen() {
                     linkAccount = false,
                     onResult = { result ->
                         result.onSuccess { user ->
-                            messageBarState.addSuccess("Authentication successful")
+                            viewModel.createCustomer(
+                                user = user,
+                                onSuccess = {messageBarState.addSuccess("Authentication successful")},
+                                onError = {message -> messageBarState.addError(message)}
+                            )
                             loadingState = false
                         }.onFailure { error ->
                             if (error.message?.contains("A network error") == true){
